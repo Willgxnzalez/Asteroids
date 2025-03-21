@@ -8,6 +8,7 @@
 App::App() 
     : window(sf::VideoMode(static_cast<unsigned int>(Config::SCREEN_WIDTH), static_cast<unsigned int>(Config::SCREEN_HEIGHT)), Config::TITLE)
 {
+    window.setFramerateLimit(Config::FPS);
     if (!window.isOpen()) {
         std::cerr << "Failed to create window\n";
         exit(EXIT_FAILURE);
@@ -20,6 +21,8 @@ App::App()
 
 void App::run() 
 {
+
+    sf::Clock clock;
     while(window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {

@@ -8,7 +8,6 @@
 class App 
 {
     sf::RenderWindow window;
-    sf::Clock clock;
     StateManager stateManager;
 
 public:

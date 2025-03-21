@@ -17,6 +17,6 @@ namespace Config {
     }();
 
     static const float HUD_HEIGHT = SCREEN_HEIGHT / 24.0f;
-    static const unsigned int FONT_SIZE = static_cast<unsigned int>(SCREEN_HEIGHT / 24); // Example value, adjust as needed
+    static const unsigned int FONT_SIZE = static_cast<unsigned int>(SCREEN_HEIGHT / 24);
     constexpr int FPS = 60;
 }

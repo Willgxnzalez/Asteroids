@@ -57,7 +57,7 @@ void GameState::update(float deltaTime)
     for (Asteroid &asteroid: asteroids) asteroid.update(deltaTime);
     
     std::vector<Bullet> & bullets = ship.getBullets();
-    bullets.erase( // erase-remove  idiom
+    bullets.erase( // erase-remove idiom
         std::remove_if(bullets.begin(), bullets.end(), [this](const Bullet &bullet) {
             bool offScreen = bullet.isOffScreen();
             if (offScreen) {
@@ -72,11 +72,11 @@ void GameState::update(float deltaTime)
 
     checkCollisions();
 
-    if (ship.getLives() <= 0) {
+    if (ship.getLives() <= 0) { // lose condition
         stateManager.setState(StateType::Gameover);
-        std::cout << "Accruacy: " << ship.getAccuracy() << std::endl;
+        std::cout << "Accuracy: " << ship.getAccuracy() << std::endl;
     }
-    if (asteroids.empty()) {
+    if (asteroids.empty()) { // new round condition
         spawnAsteroids(++astsPerRound);
         updateRoundStr();
     }

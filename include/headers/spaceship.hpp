@@ -30,9 +30,9 @@ class Spaceship
     sf::Clock shootClock;  // Clock to manage shooting intervals
 
     std::vector<Bullet> bullets;
+    int bulletsFired;
     int bulletsMissed;
-    int bulletsShot;
-    
+
 public:
     Spaceship(float x, float y);
     ~Spaceship() = default;

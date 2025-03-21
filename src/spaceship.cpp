@@ -9,7 +9,7 @@ Spaceship::Spaceship(float x, float y)
     : position(x, y), direction(0, -1), velocity(0, 0), 
       shipWidth(Config::SCREEN_WIDTH / 50.0f), shipHeight(Config::SCREEN_HEIGHT / 25.0f), lives(3),
       animationIndex(0), 
-      bulletsMissed(0), bulletsShot(0)
+      bulletsFired(0), bulletsMissed(0)
 {
     sprites[0].setTexture(ResourceManager::getTexture("rsrc/sprites/spaceship-idle.png"));
     sprites[1].setTexture(ResourceManager::getTexture("rsrc/sprites/spaceship-thrust.png"));
@@ -80,7 +80,7 @@ void Spaceship::accelerate(float deltaTime)
 void Spaceship::shoot()
 {
     if (shootClock.getElapsedTime().asSeconds() >= SHOOT_COOLDOWN and bullets.size() <= MAX_BULLETS_ON_SCREEN) {
-        bulletsShot += 1;
+        ++bulletsFired;
         bullets.emplace_back(position + (direction * (shipHeight / 2)), direction); 
         shootClock.restart();
     }
@@ -98,7 +98,7 @@ void Spaceship::idle()
 
 void Spaceship::logMissedBullet()
 {
-    bulletsMissed += 1;
+    ++bulletsMissed;
 }
 
 sf::Vector2f Spaceship::getPosition() const
@@ -123,7 +123,7 @@ float Spaceship::getLives() const
 
 float Spaceship::getAccuracy() const
 {
-    return static_cast<float>((bulletsShot - bulletsMissed) / bulletsShot) * 100.0f;
+    return (static_cast<float>(bulletsFired) - static_cast<float>(bulletsMissed)) / static_cast<float>(bulletsFired) * 100.0f;
 }
 
 

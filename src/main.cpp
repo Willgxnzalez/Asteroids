@@ -6,5 +6,5 @@ int main()
     std::cout << "Start Asteroids\n";
     App app;
     app.run();
-    return 0;
+    return EXIT_SUCCESS;
 }
